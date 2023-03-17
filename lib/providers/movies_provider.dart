@@ -10,6 +10,8 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> nowPlayingMovies = [];
   List<Movie> popularMovies = [];
 
+  Map<int, List<Cast>> moviesCast = {};
+
   int popularPage = 0;
 
   MoviesProvider() {
@@ -18,7 +20,7 @@ class MoviesProvider extends ChangeNotifier {
     getPopularMovies();
   }
 
-  _getMoviesHttp(segment, [page = 1]) async {
+  _getDataHttp(segment, [page = 1]) async {
     var url = Uri.https(
       _baseUrl,
       segment,
@@ -33,7 +35,7 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   getNowPlayingMovies() async {
-    final response = await _getMoviesHttp('3/movie/now_playing');
+    final response = await _getDataHttp('3/movie/now_playing');
     final nowPlayingResponse = NowPlayingResponse.fromJson(response.body);
 
     nowPlayingMovies = nowPlayingResponse.results;
@@ -45,12 +47,20 @@ class MoviesProvider extends ChangeNotifier {
   getPopularMovies() async {
     popularPage++;
 
-    final response = await _getMoviesHttp('3/movie/popular', popularPage);
+    final response = await _getDataHttp('3/movie/popular', popularPage);
     final popularResponse = PopularResponse.fromJson(response.body);
 
     popularMovies = [...popularMovies, ...popularResponse.results];
 
     // Notificar de cambios a los widgets escuchando provider
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMovieCast(int movieId) async {
+    final response = await _getDataHttp('3/movie/$movieId/credits');
+    final creditsResponse = CreditsResponse.fromJson(response.body);
+
+    moviesCast[movieId] = creditsResponse.cast;
+    return creditsResponse.cast;
   }
 }
