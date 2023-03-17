@@ -77,7 +77,7 @@ class _MovieAppBar extends StatelessWidget {
         ),
         background: FadeInImage(
           placeholder: const AssetImage('assets/loading.gif'),
-          image: NetworkImage(movie.fullPosterImg),
+          image: NetworkImage(movie.fullbackdropPath),
           fit: BoxFit.cover,
         ),
       ),

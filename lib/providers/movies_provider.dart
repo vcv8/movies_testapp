@@ -57,10 +57,12 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   Future<List<Cast>> getMovieCast(int movieId) async {
-    final response = await _getDataHttp('3/movie/$movieId/credits');
-    final creditsResponse = CreditsResponse.fromJson(response.body);
+    if (!moviesCast.containsKey(movieId)) {
+      final response = await _getDataHttp('3/movie/$movieId/credits');
+      final creditsResponse = CreditsResponse.fromJson(response.body);
 
-    moviesCast[movieId] = creditsResponse.cast;
-    return creditsResponse.cast;
+      moviesCast[movieId] = creditsResponse.cast;
+    }
+    return moviesCast[movieId]!;
   }
 }
