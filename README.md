@@ -1,16 +1,10 @@
 # movies_testapp
 
-A new Flutter project.
+App that serves from [themoviedb](https://www.themoviedb.org/) api to show currently playing and popular movies.
 
-## Getting Started
+## Android preview
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/15247360/227999380-d9ddeabc-a34a-43a7-bebc-45660dfd96af.png" width="408" />
+  <img src="https://user-images.githubusercontent.com/15247360/227999725-a0eb741b-d79d-412a-aebb-9d649f6aedfb.png" width="408" />   
+</p>
