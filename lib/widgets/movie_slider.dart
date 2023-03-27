@@ -86,7 +86,6 @@ class _MoviePoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     movie.heroId = heroId;
-    print(heroId);
     return Container(
       width: 122,
       // height: 190,
@@ -103,9 +102,9 @@ class _MoviePoster extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/no-image.jpg'),
                   image: NetworkImage(movie.fullPosterImg),
+                  fit: BoxFit.cover,
                   width: 122,
                   height: 177,
-                  fit: BoxFit.cover,
                 ),
               ),
             ),
